@@ -19,10 +19,6 @@
  */
 package de.fdamken.minecraft.pe.facade.communication;
 
-/**
- * TODO: Add type description!
- *
- */
 public class CommunicationService {
     // TODO Auto-generated class body.
 }

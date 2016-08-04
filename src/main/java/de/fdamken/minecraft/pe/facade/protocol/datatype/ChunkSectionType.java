@@ -22,27 +22,17 @@ package de.fdamken.minecraft.pe.facade.protocol.datatype;
 import de.fdamken.minecraft.pe.facade.model.ChunkSection;
 import io.netty.buffer.ByteBuf;
 
-public class ChunkSectionType implements DataType<ChunkSection> {
-    /**
-     * {@inheritDoc}
-     *
-     * @see de.fdamken.minecraft.pe.facade.protocol.datatype.DataType#get()
-     */
-    @Override
-    public ChunkSection get() {
-        // TODO Auto-generated method body.
-        return null;
-    }
-
+public class ChunkSectionType extends AbstractDataType<ChunkSection> {
     /**
      * {@inheritDoc}
      *
      * @see de.fdamken.minecraft.pe.facade.protocol.datatype.DataType#read(io.netty.buffer.ByteBuf)
      */
     @Override
-    public void read(final ByteBuf buffer) {
+    public ChunkSection read(final ByteBuf buffer) {
         // TODO Auto-generated method body.
 
+        return null;
     }
 
     /**

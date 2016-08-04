@@ -21,17 +21,16 @@ package de.fdamken.minecraft.pe.facade.protocol.datatype;
 
 import io.netty.buffer.ByteBuf;
 
-public class FloatType implements DataType<Float> {
-    /**
-     * {@inheritDoc}
-     *
-     * @see de.fdamken.minecraft.pe.facade.protocol.datatype.DataType#get()
-     */
-    @Override
-    public Float get() {
-        // TODO Auto-generated method body.
-        return null;
-    }
+/**
+ * Represents a {@link Float}.
+ *
+ */
+public class FloatType extends AbstractDataType<Float> {
+    // Name: Float
+    // Size (bytes): 4
+    // Encodes: A single-precision 32-bit IEEE 754 floating point number
+    // Notes: N/A
+    // Implementation Notes: N/A
 
     /**
      * {@inheritDoc}
@@ -39,9 +38,12 @@ public class FloatType implements DataType<Float> {
      * @see de.fdamken.minecraft.pe.facade.protocol.datatype.DataType#read(io.netty.buffer.ByteBuf)
      */
     @Override
-    public void read(final ByteBuf buffer) {
-        // TODO Auto-generated method body.
+    public Float read(final ByteBuf buffer) {
+        final float value = buffer.readFloat();
 
+        this.set(value);
+
+        return value;
     }
 
     /**
@@ -51,7 +53,6 @@ public class FloatType implements DataType<Float> {
      */
     @Override
     public void write(final ByteBuf buffer) {
-        // TODO Auto-generated method body.
-
+        buffer.writeFloat(this.get());
     }
 }

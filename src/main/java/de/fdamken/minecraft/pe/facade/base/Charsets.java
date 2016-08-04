@@ -17,31 +17,18 @@
  * limitations under the License.
  * #L%
  */
-package de.fdamken.minecraft.pe.facade.protocol.datatype;
+package de.fdamken.minecraft.pe.facade.base;
 
-import io.netty.buffer.ByteBuf;
+import java.nio.charset.Charset;
 
-public class VarIntType extends AbstractDataType<Integer> {
+/**
+ * Lists some charsets to skip invocations of {@link Charset#forName(String)}.
+ *
+ */
+public interface Charsets {
     /**
-     * {@inheritDoc}
-     *
-     * @see de.fdamken.minecraft.pe.facade.protocol.datatype.DataType#read(io.netty.buffer.ByteBuf)
+     * UTF-8
+     * 
      */
-    @Override
-    public Integer read(final ByteBuf buffer) {
-        // TODO Auto-generated method body.
-
-        return null;
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * @see de.fdamken.minecraft.pe.facade.protocol.datatype.DataType#write(io.netty.buffer.ByteBuf)
-     */
-    @Override
-    public void write(final ByteBuf buffer) {
-        // TODO Auto-generated method body.
-
-    }
+    Charset UTF_8 = Charset.forName("UTF-8");
 }

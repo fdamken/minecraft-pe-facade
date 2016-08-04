@@ -22,27 +22,17 @@ package de.fdamken.minecraft.pe.facade.protocol.datatype;
 import de.fdamken.minecraft.pe.facade.model.Slot;
 import io.netty.buffer.ByteBuf;
 
-public class SlotType implements DataType<Slot> {
-    /**
-     * {@inheritDoc}
-     *
-     * @see de.fdamken.minecraft.pe.facade.protocol.datatype.DataType#get()
-     */
-    @Override
-    public Slot get() {
-        // TODO Auto-generated method body.
-        return null;
-    }
-
+public class SlotType extends AbstractDataType<Slot> {
     /**
      * {@inheritDoc}
      *
      * @see de.fdamken.minecraft.pe.facade.protocol.datatype.DataType#read(io.netty.buffer.ByteBuf)
      */
     @Override
-    public void read(final ByteBuf buffer) {
+    public Slot read(final ByteBuf buffer) {
         // TODO Auto-generated method body.
 
+        return null;
     }
 
     /**

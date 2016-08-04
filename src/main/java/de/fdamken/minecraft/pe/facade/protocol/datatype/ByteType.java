@@ -21,17 +21,16 @@ package de.fdamken.minecraft.pe.facade.protocol.datatype;
 
 import io.netty.buffer.ByteBuf;
 
-public class ByteType implements DataType<Byte> {
-    /**
-     * {@inheritDoc}
-     *
-     * @see de.fdamken.minecraft.pe.facade.protocol.datatype.DataType#get()
-     */
-    @Override
-    public Byte get() {
-        // TODO Auto-generated method body.
-        return null;
-    }
+/**
+ * Represents a {@link Byte}.
+ *
+ */
+public class ByteType extends AbstractDataType<Byte> {
+    // Name: Byte
+    // Size (bytes): 1
+    // Encodes: An integer between -128 and 127
+    // Notes: Signed 8-bit integer, two's complement
+    // Implementation Notes: N/A
 
     /**
      * {@inheritDoc}
@@ -39,9 +38,12 @@ public class ByteType implements DataType<Byte> {
      * @see de.fdamken.minecraft.pe.facade.protocol.datatype.DataType#read(io.netty.buffer.ByteBuf)
      */
     @Override
-    public void read(final ByteBuf buffer) {
-        // TODO Auto-generated method body.
+    public Byte read(final ByteBuf buffer) {
+        final byte value = buffer.readByte();
 
+        this.set(value);
+
+        return value;
     }
 
     /**
@@ -51,7 +53,6 @@ public class ByteType implements DataType<Byte> {
      */
     @Override
     public void write(final ByteBuf buffer) {
-        // TODO Auto-generated method body.
-
+        buffer.writeByte(this.get());
     }
 }

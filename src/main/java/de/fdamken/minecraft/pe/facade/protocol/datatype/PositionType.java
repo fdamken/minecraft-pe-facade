@@ -22,27 +22,29 @@ package de.fdamken.minecraft.pe.facade.protocol.datatype;
 import de.fdamken.minecraft.pe.facade.model.Position;
 import io.netty.buffer.ByteBuf;
 
-public class PositionType implements DataType<Position> {
-    /**
-     * {@inheritDoc}
-     *
-     * @see de.fdamken.minecraft.pe.facade.protocol.datatype.DataType#get()
-     */
-    @Override
-    public Position get() {
-        // TODO Auto-generated method body.
-        return null;
-    }
-
+/**
+ * Represents a {@link Position}.
+ *
+ */
+public class PositionType extends AbstractDataType<Position> {
     /**
      * {@inheritDoc}
      *
      * @see de.fdamken.minecraft.pe.facade.protocol.datatype.DataType#read(io.netty.buffer.ByteBuf)
      */
     @Override
-    public void read(final ByteBuf buffer) {
-        // TODO Auto-generated method body.
+    public Position read(final ByteBuf buffer) {
+        final long val = buffer.readLong();
 
+        final int x = (int) (val >> 38);
+        final int y = (int) (val >> 26 & 0x0FFF);
+        final int z = (int) (val & 0x03FFFFFF);
+
+        final Position value = new Position(x, y, z);
+
+        this.set(value);
+
+        return value;
     }
 
     /**
@@ -52,7 +54,11 @@ public class PositionType implements DataType<Position> {
      */
     @Override
     public void write(final ByteBuf buffer) {
-        // TODO Auto-generated method body.
+        final Position value = this.get();
+        final int x = value.getX();
+        final int y = value.getY();
+        final int z = value.getZ();
 
+        buffer.writeLong((x & 0x03FFFFFF) << 38 | (y & 0x0FFF) << 26 | z & 0x03FFFFFF);
     }
 }

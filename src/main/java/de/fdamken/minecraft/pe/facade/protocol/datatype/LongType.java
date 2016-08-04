@@ -21,17 +21,16 @@ package de.fdamken.minecraft.pe.facade.protocol.datatype;
 
 import io.netty.buffer.ByteBuf;
 
-public class LongType implements DataType<Long> {
-    /**
-     * {@inheritDoc}
-     *
-     * @see de.fdamken.minecraft.pe.facade.protocol.datatype.DataType#get()
-     */
-    @Override
-    public Long get() {
-        // TODO Auto-generated method body.
-        return null;
-    }
+/**
+ * Represents a {@link Long}.
+ *
+ */
+public class LongType extends AbstractDataType<Long> {
+    // Name: Long
+    // Size (bytes): 8
+    // Encodes: An integer between -9223372036854775808 and 9223372036854775807
+    // Notes: Signed 64-bit integer, two's complement
+    // Implementation Notes: N/A
 
     /**
      * {@inheritDoc}
@@ -39,9 +38,12 @@ public class LongType implements DataType<Long> {
      * @see de.fdamken.minecraft.pe.facade.protocol.datatype.DataType#read(io.netty.buffer.ByteBuf)
      */
     @Override
-    public void read(final ByteBuf buffer) {
-        // TODO Auto-generated method body.
+    public Long read(final ByteBuf buffer) {
+        final long value = buffer.readLong();
 
+        this.set(value);
+
+        return value;
     }
 
     /**
@@ -51,7 +53,6 @@ public class LongType implements DataType<Long> {
      */
     @Override
     public void write(final ByteBuf buffer) {
-        // TODO Auto-generated method body.
-
+        buffer.writeLong(this.get());
     }
 }

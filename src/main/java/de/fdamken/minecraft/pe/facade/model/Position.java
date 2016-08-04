@@ -19,6 +19,11 @@
  */
 package de.fdamken.minecraft.pe.facade.model;
 
+import lombok.Value;
+
+@Value
 public class Position {
-    // TODO Auto-generated class body.
+    int x;
+    int y;
+    int z;
 }

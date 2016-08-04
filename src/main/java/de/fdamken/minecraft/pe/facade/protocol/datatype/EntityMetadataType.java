@@ -22,17 +22,12 @@ package de.fdamken.minecraft.pe.facade.protocol.datatype;
 import de.fdamken.minecraft.pe.facade.model.EntityMetadata;
 import io.netty.buffer.ByteBuf;
 
-public class EntityMetadataType implements DataType<EntityMetadata> {
-    /**
-     * {@inheritDoc}
-     *
-     * @see de.fdamken.minecraft.pe.facade.protocol.datatype.DataType#get()
-     */
-    @Override
-    public EntityMetadata get() {
-        // TODO Auto-generated method body.
-        return null;
-    }
+public class EntityMetadataType extends AbstractDataType<EntityMetadata> {
+    // Name: Entity Metadata
+    // Size (bytes): Varies
+    // Encodes: Miscellaneous information about an entity
+    // Notes: See http://wiki.vg/Entities#Entity_Metadata_Format
+    // Implementation Notes: N/A
 
     /**
      * {@inheritDoc}
@@ -40,9 +35,10 @@ public class EntityMetadataType implements DataType<EntityMetadata> {
      * @see de.fdamken.minecraft.pe.facade.protocol.datatype.DataType#read(io.netty.buffer.ByteBuf)
      */
     @Override
-    public void read(final ByteBuf buffer) {
+    public EntityMetadata read(final ByteBuf buffer) {
         // TODO Auto-generated method body.
 
+        return null;
     }
 
     /**

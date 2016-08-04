@@ -21,17 +21,17 @@ package de.fdamken.minecraft.pe.facade.protocol.datatype;
 
 import io.netty.buffer.ByteBuf;
 
-public class UnsignedByteType implements DataType<Short> {
-    /**
-     * {@inheritDoc}
-     *
-     * @see de.fdamken.minecraft.pe.facade.protocol.datatype.DataType#get()
-     */
-    @Override
-    public Short get() {
-        // TODO Auto-generated method body.
-        return null;
-    }
+/**
+ * Represents an unsigned {@link Byte} using a {@link Short}.
+ *
+ */
+public class UnsignedByteType extends AbstractDataType<Short> {
+    // Name: Unsigned Byte
+    // Size (bytes): 1
+    // Encodes: An integer between 0 and 255
+    // Notes: Unsigned 8-bit integer
+    // Implementation Notes: Represented as a Short as Java does not have
+    // unsigned numbers.
 
     /**
      * {@inheritDoc}
@@ -39,9 +39,12 @@ public class UnsignedByteType implements DataType<Short> {
      * @see de.fdamken.minecraft.pe.facade.protocol.datatype.DataType#read(io.netty.buffer.ByteBuf)
      */
     @Override
-    public void read(final ByteBuf buffer) {
-        // TODO Auto-generated method body.
+    public Short read(final ByteBuf buffer) {
+        final short value = buffer.readUnsignedByte();
 
+        this.set(value);
+
+        return value;
     }
 
     /**
@@ -51,7 +54,6 @@ public class UnsignedByteType implements DataType<Short> {
      */
     @Override
     public void write(final ByteBuf buffer) {
-        // TODO Auto-generated method body.
-
+        buffer.writeByte(this.get());
     }
 }

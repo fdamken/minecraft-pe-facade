@@ -23,17 +23,16 @@ import java.util.UUID;
 
 import io.netty.buffer.ByteBuf;
 
-public class UuidType implements DataType<UUID> {
-    /**
-     * {@inheritDoc}
-     *
-     * @see de.fdamken.minecraft.pe.facade.protocol.datatype.DataType#get()
-     */
-    @Override
-    public UUID get() {
-        // TODO Auto-generated method body.
-        return null;
-    }
+/**
+ * Represents a {@link UUID}.
+ *
+ */
+public class UuidType extends AbstractDataType<UUID> {
+    // Name: UUID
+    // Size (bytes): 16
+    // Encodes: A UUID
+    // Notes: Encoded as an unsigned 64-bit integer
+    // Implementation Notes: N/A
 
     /**
      * {@inheritDoc}
@@ -41,9 +40,15 @@ public class UuidType implements DataType<UUID> {
      * @see de.fdamken.minecraft.pe.facade.protocol.datatype.DataType#read(io.netty.buffer.ByteBuf)
      */
     @Override
-    public void read(final ByteBuf buffer) {
-        // TODO Auto-generated method body.
+    public UUID read(final ByteBuf buffer) {
+        final long msb = new LongType().read(buffer);
+        final long lsb = new LongType().read(buffer);
 
+        final UUID value = new UUID(msb, lsb);
+
+        this.set(value);
+
+        return value;
     }
 
     /**
@@ -53,7 +58,12 @@ public class UuidType implements DataType<UUID> {
      */
     @Override
     public void write(final ByteBuf buffer) {
-        // TODO Auto-generated method body.
+        final UUID value = this.get();
 
+        final long msb = value.getMostSignificantBits();
+        final long lsb = value.getLeastSignificantBits();
+
+        new LongType().set(msb).write(buffer);
+        new LongType().set(lsb).write(buffer);
     }
 }

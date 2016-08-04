@@ -21,27 +21,17 @@ package de.fdamken.minecraft.pe.facade.protocol.datatype;
 
 import io.netty.buffer.ByteBuf;
 
-public class VarLongType implements DataType<Long> {
-    /**
-     * {@inheritDoc}
-     *
-     * @see de.fdamken.minecraft.pe.facade.protocol.datatype.DataType#get()
-     */
-    @Override
-    public Long get() {
-        // TODO Auto-generated method body.
-        return null;
-    }
-
+public class VarLongType extends AbstractDataType<Long> {
     /**
      * {@inheritDoc}
      *
      * @see de.fdamken.minecraft.pe.facade.protocol.datatype.DataType#read(io.netty.buffer.ByteBuf)
      */
     @Override
-    public void read(final ByteBuf buffer) {
+    public Long read(final ByteBuf buffer) {
         // TODO Auto-generated method body.
 
+        return null;
     }
 
     /**

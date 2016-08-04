@@ -19,39 +19,16 @@
  */
 package de.fdamken.minecraft.pe.facade.protocol.datatype;
 
-import io.netty.buffer.ByteBuf;
-
-public class AngleType implements DataType<Integer> {
-    /**
-     * {@inheritDoc}
-     *
-     * @see de.fdamken.minecraft.pe.facade.protocol.datatype.DataType#get()
-     */
-    @Override
-    public Integer get() {
-        // TODO Auto-generated method body.
-        return null;
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * @see de.fdamken.minecraft.pe.facade.protocol.datatype.DataType#read(io.netty.buffer.ByteBuf)
-     */
-    @Override
-    public void read(final ByteBuf buffer) {
-        // TODO Auto-generated method body.
-
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * @see de.fdamken.minecraft.pe.facade.protocol.datatype.DataType#write(io.netty.buffer.ByteBuf)
-     */
-    @Override
-    public void write(final ByteBuf buffer) {
-        // TODO Auto-generated method body.
-
-    }
+/**
+ * Represents the angel data type as a {@link Short}.
+ *
+ */
+public class AngleType extends UnsignedShortType {
+    // Name: Unsigned Byte
+    // Size (bytes): 1
+    // Encodes: A rotation angle in steps of 1/256 of a full turn
+    // Notes: Whether or not this is signed does not matter, since the resulting
+    // angles are the same.
+    // Implementation Notes: It is treated as an unsigned byte that is
+    // represented as a Short as Java does not have unsigned numbers.
 }

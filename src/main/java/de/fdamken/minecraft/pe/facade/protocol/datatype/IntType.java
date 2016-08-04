@@ -21,17 +21,16 @@ package de.fdamken.minecraft.pe.facade.protocol.datatype;
 
 import io.netty.buffer.ByteBuf;
 
-public class IntType implements DataType<Integer> {
-    /**
-     * {@inheritDoc}
-     *
-     * @see de.fdamken.minecraft.pe.facade.protocol.datatype.DataType#get()
-     */
-    @Override
-    public Integer get() {
-        // TODO Auto-generated method body.
-        return null;
-    }
+/**
+ * Represents an {@link Integer}.
+ *
+ */
+public class IntType extends AbstractDataType<Integer> {
+    // Name: Int
+    // Size (bytes): 4
+    // Encodes: An integer between -2147483648 and 2147483647
+    // Notes: Signed 32-bit integer, two's complement
+    // Implementation Notes: N/A
 
     /**
      * {@inheritDoc}
@@ -39,9 +38,12 @@ public class IntType implements DataType<Integer> {
      * @see de.fdamken.minecraft.pe.facade.protocol.datatype.DataType#read(io.netty.buffer.ByteBuf)
      */
     @Override
-    public void read(final ByteBuf buffer) {
-        // TODO Auto-generated method body.
+    public Integer read(final ByteBuf buffer) {
+        final int value = buffer.readInt();
 
+        this.set(value);
+
+        return value;
     }
 
     /**
@@ -51,7 +53,6 @@ public class IntType implements DataType<Integer> {
      */
     @Override
     public void write(final ByteBuf buffer) {
-        // TODO Auto-generated method body.
-
+        buffer.writeInt(this.get());
     }
 }

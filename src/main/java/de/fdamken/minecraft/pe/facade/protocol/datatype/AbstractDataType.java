@@ -19,30 +19,39 @@
  */
 package de.fdamken.minecraft.pe.facade.protocol.datatype;
 
-import de.fdamken.minecraft.pe.facade.model.Chat;
-import io.netty.buffer.ByteBuf;
+/**
+ * An abstract implementation of {@link DataType} that implements the value
+ * storage.
+ *
+ * @param <T>
+ *            The Java type that this type represents.
+ */
+public abstract class AbstractDataType<T> implements DataType<T> {
+    /**
+     * The stored value.
+     * 
+     */
+    private T value;
 
-public class ChatType extends AbstractDataType<Chat> {
     /**
      * {@inheritDoc}
      *
-     * @see de.fdamken.minecraft.pe.facade.protocol.datatype.DataType#read(io.netty.buffer.ByteBuf)
+     * @see de.fdamken.minecraft.pe.facade.protocol.datatype.DataType#get()
      */
     @Override
-    public Chat read(final ByteBuf buffer) {
-        // TODO Auto-generated method body.
-
-        return null;
+    public T get() {
+        return this.value;
     }
 
     /**
      * {@inheritDoc}
      *
-     * @see de.fdamken.minecraft.pe.facade.protocol.datatype.DataType#write(io.netty.buffer.ByteBuf)
+     * @see de.fdamken.minecraft.pe.facade.protocol.datatype.DataType#set(java.lang.Object)
      */
     @Override
-    public void write(final ByteBuf buffer) {
-        // TODO Auto-generated method body.
+    public AbstractDataType<T> set(final T value) {
+        this.value = value;
 
+        return this;
     }
 }

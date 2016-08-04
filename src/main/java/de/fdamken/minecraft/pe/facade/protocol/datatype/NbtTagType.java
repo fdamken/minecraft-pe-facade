@@ -22,27 +22,17 @@ package de.fdamken.minecraft.pe.facade.protocol.datatype;
 import de.fdamken.minecraft.pe.facade.model.NbtTag;
 import io.netty.buffer.ByteBuf;
 
-public class NbtTagType implements DataType<NbtTag> {
-    /**
-     * {@inheritDoc}
-     *
-     * @see de.fdamken.minecraft.pe.facade.protocol.datatype.DataType#get()
-     */
-    @Override
-    public NbtTag get() {
-        // TODO Auto-generated method body.
-        return null;
-    }
-
+public class NbtTagType extends AbstractDataType<NbtTag> {
     /**
      * {@inheritDoc}
      *
      * @see de.fdamken.minecraft.pe.facade.protocol.datatype.DataType#read(io.netty.buffer.ByteBuf)
      */
     @Override
-    public void read(final ByteBuf buffer) {
+    public NbtTag read(final ByteBuf buffer) {
         // TODO Auto-generated method body.
 
+        return null;
     }
 
     /**

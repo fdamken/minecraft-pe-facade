@@ -21,17 +21,16 @@ package de.fdamken.minecraft.pe.facade.protocol.datatype;
 
 import io.netty.buffer.ByteBuf;
 
-public class DoubleType implements DataType<Double> {
-    /**
-     * {@inheritDoc}
-     *
-     * @see de.fdamken.minecraft.pe.facade.protocol.datatype.DataType#get()
-     */
-    @Override
-    public Double get() {
-        // TODO Auto-generated method body.
-        return null;
-    }
+/**
+ * Represents a {@link Double}.
+ *
+ */
+public class DoubleType extends AbstractDataType<Double> {
+    // Name: Double
+    // Size (bytes): 8
+    // Encodes: A double-precision 64-bit IEEE 754 floating point number
+    // Notes: N/A
+    // Implementation Notes: N/A
 
     /**
      * {@inheritDoc}
@@ -39,9 +38,12 @@ public class DoubleType implements DataType<Double> {
      * @see de.fdamken.minecraft.pe.facade.protocol.datatype.DataType#read(io.netty.buffer.ByteBuf)
      */
     @Override
-    public void read(final ByteBuf buffer) {
-        // TODO Auto-generated method body.
+    public Double read(final ByteBuf buffer) {
+        final double value = buffer.readDouble();
 
+        this.set(value);
+
+        return value;
     }
 
     /**
@@ -51,7 +53,6 @@ public class DoubleType implements DataType<Double> {
      */
     @Override
     public void write(final ByteBuf buffer) {
-        // TODO Auto-generated method body.
-
+        buffer.writeDouble(this.get());
     }
 }

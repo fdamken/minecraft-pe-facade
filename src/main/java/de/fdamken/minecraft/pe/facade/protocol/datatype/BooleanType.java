@@ -21,17 +21,16 @@ package de.fdamken.minecraft.pe.facade.protocol.datatype;
 
 import io.netty.buffer.ByteBuf;
 
-public class BooleanType implements DataType<Boolean> {
-    /**
-     * {@inheritDoc}
-     *
-     * @see de.fdamken.minecraft.pe.facade.protocol.datatype.DataType#get()
-     */
-    @Override
-    public Boolean get() {
-        // TODO Auto-generated method body.
-        return null;
-    }
+/**
+ * Represents a {@link Boolean}.
+ *
+ */
+public class BooleanType extends AbstractDataType<Boolean> {
+    // Name: Boolean
+    // Size (bytes): 1
+    // Encodes: Either false or true
+    // Notes: True is encoded as 0x01, false as 0x00.
+    // Implementation Notes: 0x01 is interpreted as true, other values as false.
 
     /**
      * {@inheritDoc}
@@ -39,9 +38,14 @@ public class BooleanType implements DataType<Boolean> {
      * @see de.fdamken.minecraft.pe.facade.protocol.datatype.DataType#read(io.netty.buffer.ByteBuf)
      */
     @Override
-    public void read(final ByteBuf buffer) {
-        // TODO Auto-generated method body.
+    public Boolean read(final ByteBuf buffer) {
+        final byte read = buffer.readByte();
 
+        final boolean value = read == 1;
+
+        this.set(value);
+
+        return value;
     }
 
     /**
@@ -51,7 +55,6 @@ public class BooleanType implements DataType<Boolean> {
      */
     @Override
     public void write(final ByteBuf buffer) {
-        // TODO Auto-generated method body.
-
+        buffer.writeByte(this.get() ? 1 : 0);
     }
 }

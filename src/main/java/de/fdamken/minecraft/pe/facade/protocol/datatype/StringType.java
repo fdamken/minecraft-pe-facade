@@ -19,19 +19,19 @@
  */
 package de.fdamken.minecraft.pe.facade.protocol.datatype;
 
+import de.fdamken.minecraft.pe.facade.base.Charsets;
 import io.netty.buffer.ByteBuf;
 
-public class StringType implements DataType<String> {
-    /**
-     * {@inheritDoc}
-     *
-     * @see de.fdamken.minecraft.pe.facade.protocol.datatype.DataType#get()
-     */
-    @Override
-    public String get() {
-        // TODO Auto-generated method body.
-        return null;
-    }
+/**
+ * Represents a {@link String}.
+ *
+ */
+public class StringType extends AbstractDataType<String> {
+    // Name: String
+    // Size (bytes): 1 to 2147483652
+    // Encodes: A sequence of Unicode scalar values
+    // Notes: UTF-8 string prefixed with its size in bytes as a VarInt
+    // Implementation Notes: N/A
 
     /**
      * {@inheritDoc}
@@ -39,9 +39,15 @@ public class StringType implements DataType<String> {
      * @see de.fdamken.minecraft.pe.facade.protocol.datatype.DataType#read(io.netty.buffer.ByteBuf)
      */
     @Override
-    public void read(final ByteBuf buffer) {
-        // TODO Auto-generated method body.
+    public String read(final ByteBuf buffer) {
+        final int length = new VarIntType().read(buffer);
+        final ByteBuf stringBytes = buffer.readBytes(length);
 
+        final String value = stringBytes.toString(Charsets.UTF_8);
+
+        this.set(value);
+
+        return value;
     }
 
     /**
@@ -51,7 +57,9 @@ public class StringType implements DataType<String> {
      */
     @Override
     public void write(final ByteBuf buffer) {
-        // TODO Auto-generated method body.
+        final String value = this.get();
 
+        new VarIntType().set(value.length()).write(buffer);
+        buffer.writeBytes(value.getBytes(Charsets.UTF_8));
     }
 }

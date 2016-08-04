@@ -26,7 +26,7 @@ import io.netty.buffer.ByteBuf;
  * {@link ByteBuf buffer} and can be written to a {@link ByteBuf buffer}.
  * 
  * @param <T>
- *            The Java type that represents this type.
+ *            The Java type that this type represents.
  */
 public interface DataType<T> {
     /**
@@ -36,12 +36,22 @@ public interface DataType<T> {
     T get();
 
     /**
+     * Sets the stored value.
+     *
+     * @param value
+     *            The value to set.
+     * @return The {@link DataType} instance.
+     */
+    DataType<T> set(T value);
+
+    /**
      * Reads the given {@link ByteBuf buffer} and sets the value of this type.
      *
      * @param buffer
      *            The {@link ByteBuf buffer} to read.
+     * @return The newly stored value.
      */
-    void read(ByteBuf buffer);
+    T read(ByteBuf buffer);
 
     /**
      * Writes the value of this date into the given {@link ByteBuf buffer}.

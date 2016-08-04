@@ -21,6 +21,10 @@ package de.fdamken.minecraft.pe.facade;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+
+import de.fdamken.minecraft.pe.facade.server.McpeServer;
+import de.fdamken.minecraft.pe.facade.server.exception.ServerExecutionException;
 
 /**
  * The main class of the Minecraft Pocket Edition Facade.
@@ -37,8 +41,14 @@ public class MinecraftPocketEditionFacade {
      *
      * @param args
      *            The command line arguments.
+     * @throws ServerExecutionException
+     *             Id an error occurs whilst executing the MCPE server.
      */
-    public static void main(final String[] args) {
-        SpringApplication.run(MinecraftPocketEditionFacade.class, args);
+    public static void main(final String[] args) throws ServerExecutionException {
+        // The application context closes itself on shutdown.
+        @SuppressWarnings("resource")
+        final ApplicationContext applicationContext = SpringApplication.run(MinecraftPocketEditionFacade.class, args);
+
+        applicationContext.getBean(McpeServer.class).start();
     }
 }

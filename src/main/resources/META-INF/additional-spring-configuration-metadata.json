@@ -23,6 +23,12 @@
 			"name": "minecraft.pocket-edition.port",
 			"type": "java.lang.Integer",
 			"description": "The port of the Minecraft Pocket Edition facade server to bind to. Defaults to '19232'."
+		},
+
+		{
+			"name": "minecraft.pocket-edition.worker-threads",
+			"type": "java.lang.Integer",
+			"description": "The number of threads the worker group should use. Defaults to '2'."
 		}
 	]
 }

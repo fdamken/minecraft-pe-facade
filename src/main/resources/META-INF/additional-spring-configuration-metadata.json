@@ -14,6 +14,12 @@
 		},
 
 		{
+			"name": "minecraft.server.worker-threads",
+			"type": "java.lang.String",
+			"description": "The number of threads the worker group should use. Defaults to '2'."
+		},
+
+		{
 			"name": "minecraft.pocket-edition.ip",
 			"type": "java.lang.String",
 			"description": "The IP of the Minecraft Pocket Edition facade server to bind to. Defaults to '0.0.0.0.'."

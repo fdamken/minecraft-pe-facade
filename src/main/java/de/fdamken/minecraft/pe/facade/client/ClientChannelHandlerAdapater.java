@@ -17,18 +17,17 @@
  * limitations under the License.
  * #L%
  */
-package de.fdamken.minecraft.pe.facade.server;
+package de.fdamken.minecraft.pe.facade.client;
 
 import org.springframework.stereotype.Component;
 
-import io.netty.channel.ChannelInboundHandlerAdapter;
+import io.netty.channel.ChannelHandlerAdapter;
 
 /**
- * The channel handler adapter that is used to catch the incoming datagrams from
- * the Minecraft Pocket Edition client and respond to them.
- *
+ * The channel handler adapter that is used to talk to the Minecraft server.
+ * 
  */
 @Component
-public class ServerChannelHandlerAdapter extends ChannelInboundHandlerAdapter {
+public class ClientChannelHandlerAdapater extends ChannelHandlerAdapter {
     // Not yet implemented.
 }

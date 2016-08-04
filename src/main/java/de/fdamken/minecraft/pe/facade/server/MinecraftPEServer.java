@@ -34,7 +34,7 @@ import io.netty.bootstrap.Bootstrap;
  *
  */
 @Component
-public class McpeServer {
+public class MinecraftPEServer {
     /**
      * The configured Netty {@link Bootstrap} for UDP.
      * 

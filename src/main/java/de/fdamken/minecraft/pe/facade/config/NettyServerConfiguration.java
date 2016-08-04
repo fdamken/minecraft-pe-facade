@@ -86,7 +86,7 @@ public class NettyServerConfiguration {
      *
      */
     @PostConstruct
-    public void onPostConstruct() {
+    private void onPostConstruct() {
         NettyServerConfiguration.LOGGER.info("Creating Minecraft Pocket Edition server as a facade at {}:{}", this.ip, this.port);
     }
 
@@ -98,7 +98,7 @@ public class NettyServerConfiguration {
     @Bean
     public Bootstrap serverBootstrap() {
         return new Bootstrap() //
-                .group(this.workerGroup()) //
+                .group(this.serverWorkerGroup()) //
                 .channel(EpollDatagramChannel.class) //
                 .handler(this.channelInitializer) //
                 .option(ChannelOption.ALLOCATOR, PooledByteBufAllocator.DEFAULT);
@@ -111,7 +111,7 @@ public class NettyServerConfiguration {
      * @return The worker group.
      */
     @Bean(destroyMethod = "shutdownGracefully")
-    public EventLoopGroup workerGroup() {
+    public EventLoopGroup serverWorkerGroup() {
         return new EpollEventLoopGroup(this.workerThreadCount);
     }
 

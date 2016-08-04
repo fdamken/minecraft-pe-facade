@@ -23,7 +23,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
-import de.fdamken.minecraft.pe.facade.server.McpeServer;
+import de.fdamken.minecraft.pe.facade.client.MinecraftClient;
+import de.fdamken.minecraft.pe.facade.server.MinecraftPEServer;
 import de.fdamken.minecraft.pe.facade.server.exception.ServerExecutionException;
 
 /**
@@ -49,6 +50,7 @@ public class MinecraftPocketEditionFacade {
         @SuppressWarnings("resource")
         final ApplicationContext applicationContext = SpringApplication.run(MinecraftPocketEditionFacade.class, args);
 
-        applicationContext.getBean(McpeServer.class).start();
+        applicationContext.getBean(MinecraftClient.class).start();
+        applicationContext.getBean(MinecraftPEServer.class).start();
     }
 }
